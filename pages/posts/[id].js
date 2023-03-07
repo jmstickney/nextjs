@@ -1,8 +1,13 @@
 import Layout from "../../components/layout";
-import { getAllPostIds, getPostData } from "../../lib/posts";
+import { getPostData, getAllPostIds } from "../../lib/posts";
+import { supabase } from "../../lib/supabaseClient";
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds();
+  //   const { data } = await supabase.from("jobs").select("id");
+  //   const paths = data.map((post) => ({
+  //     params: { id: JSON.stringify(post.id) },
+  //   }));
+  const paths = await getAllPostIds();
   return {
     paths,
     fallback: false,

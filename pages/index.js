@@ -3,6 +3,7 @@ import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 //import { getSortedPostsData } from "../lib/posts";
 import { supabase } from "./../lib/supabaseClient";
+import Link from "next/link";
 
 function Home({ jobs }) {
   return (
@@ -17,9 +18,18 @@ function Home({ jobs }) {
           <a href="https://nextjs.org/learn"> our Next.js tutorial</a>.)
         </p>
       </section>
-      <ul className={utilStyles.list}>
+      {/* <ul className={utilStyles.list}>
         {jobs.map((country) => (
           <li key={country.id}>{country.name}</li>
+        ))}
+      </ul> */}
+      <ul className={utilStyles.list}>
+        {jobs.map((data) => (
+          <li className={utilStyles.listItem} key={data.id}>
+            <Link href={`/posts/${data.company}`}>{data.desc}</Link>
+            <br />
+            <small className={utilStyles.lightText}></small>
+          </li>
         ))}
       </ul>
     </Layout>

@@ -1,6 +1,7 @@
 import Layout from "../../components/layout";
 import { getPostData, getAllPostIds } from "../../lib/posts";
 import { supabase } from "../../lib/supabaseClient";
+import Head from "next/head";
 
 export async function getStaticPaths() {
   //   const { data } = await supabase.from("jobs").select("id");
@@ -15,7 +16,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postData = getPostData(params.id);
+  const postData = await getPostData(params.id);
   return {
     props: {
       postData,
@@ -30,7 +31,7 @@ export default function Post({ postData }) {
       <br />
       {postData.id}
       <br />
-      {postData.date}
+      {postData.rez}
     </Layout>
   );
 }
